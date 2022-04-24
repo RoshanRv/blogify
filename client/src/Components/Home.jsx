@@ -1,7 +1,7 @@
 import React,{useState,useEffect}from 'react'
 import Axios from 'axios'
 import { Link, useParams} from 'react-router-dom'
-import like from '../assets/like.svg'
+// import like from '../assets/like.svg'
 import paper from '../assets/paper.svg'
 import DP from './DP'
 
@@ -27,13 +27,13 @@ export const Profile = ({user,data,loginID})=>{
                     </div>
                     {/*             Likes and Blogs      */}
                     <div className="flex items-end mb-2 gap-x-4">
-                        <div className='flex flex-col text-center justify-center'>
+                        {/* <div className='flex flex-col text-center justify-center'>
                             <h1>Likes</h1>
                             <div className="flex items-center">
                                 <img src={like} alt="like" className='w-12 h-12' />
                                 <p>50</p>
                             </div>
-                        </div>
+                        </div> */}
                         <div className='flex flex-col text-center justify-center'>
                             <h1>Blogs</h1>
                             <div className="flex items-center">
