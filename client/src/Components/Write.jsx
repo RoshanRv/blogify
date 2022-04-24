@@ -1,8 +1,8 @@
-import React,{useState}from 'react'
+import React,{useEffect, useState}from 'react'
 import Button from './Button'
 import Axios from 'axios'
 import Header from './Header'
-import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const Write = () => {
 
@@ -12,7 +12,9 @@ const Write = () => {
     const [isPostEditing,setIsPostEditing]= useState(true)
     const [isEmpty,setIsEmpty]=useState(false)
 
-    const {user} = useParams()
+    const navigate = useNavigate()
+
+    const user = JSON.parse(localStorage.getItem('username'))
 
     const handleSubmit=()=>{
         if(title===''|post===''){
@@ -21,9 +23,25 @@ const Write = () => {
                 setIsEmpty(false)
             },2500)
         }else{
-            Axios.post(`http://localhost:3001/${user}/write`,{title:title,post:post})
+            if(user){
+                Axios.post(`http://localhost:3001/${user}/write`,{title:title,post:post}).then(
+                    sessionStorage?.removeItem('blog')
+                )
+            }else{
+                sessionStorage.setItem('blog',JSON.stringify({title,post}))
+                navigate('/login')
+            }
         }
     }
+
+    useEffect(()=>{
+        const blog = JSON.parse(sessionStorage.getItem('blog'))
+        if(blog){
+            console.log(blog)
+            setTitle(blog.title)
+            setPost(blog.post)
+        }
+    },[])
 
   return (
     <div>

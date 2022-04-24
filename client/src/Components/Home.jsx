@@ -48,15 +48,10 @@ export const Profile = ({user,data,loginID})=>{
         setAva()
     },[])
 
-    const handleChangeDP =(name)=>{
-
-        if(name=='cancel')setShowChangeDP(false)
-
-        else if(name=='save'){
-            Axios.post(`http://localhost:3001/${user}/profile`,{currAvatar:returnStr()})
-            setShowChangeDP(false)
-        }
-
+    const handleChangeDP =()=>{
+        
+        Axios.post(`http://localhost:3001/${user}/profile`,{currAvatar:returnStr()})
+        setShowChangeDP(false)
     
     }
     
@@ -99,7 +94,6 @@ export const Profile = ({user,data,loginID})=>{
             
             {/*         Change DP  */}
             {loginID==user&&<div className={` ${showChangeDP?'scale-100':'scale-0'} top-1 md:left-1/4 left-10 md:w-max max-w-screen absolute m-2 -right-0 bg-emerald-300 transition-all p-1  md:p-3 border-2 border-white text-center `}>
-                {/* <p onClick={()=>setShowChangeDP(false)}>X</p> */}
                 <p className='font-medium my-1 text-lg '>Change Your DP</p>
                 <div className="flex gap-4 flex-wrap justify-center">
                 {avatars.map((avatar,i)=>(
@@ -111,10 +105,8 @@ export const Profile = ({user,data,loginID})=>{
 
                 <div className="flex justify-between ">
                     <Logout button/>
-                    <div className="flex  my-2 gap-x-4">
-                        <button className='text-lg  transition-colors hover:bg-emerald-600 bg-emerald-400 border-2 border-white px-3 py-2 h-max rounded-md' name='cancel' onClick={(e)=>handleChangeDP(e.target.name)}>Cancel</button>
-                        <button className='text-lg  transition-colors hover:bg-emerald-600 bg-emerald-400 border-2 border-white px-3 py-2 h-max rounded-md' name='save' onClick={(e)=>handleChangeDP(e.target.name)}>Save</button>
-                    </div>
+                        
+                    <button className='text-lg my-2 transition-colors hover:bg-emerald-600 bg-emerald-400 border-2 border-white px-3 py-2 h-max rounded-md' name='save' onClick={()=>handleChangeDP()}>Save</button>
                 </div>
 
                 
@@ -162,7 +154,7 @@ const Home = () => {
             <div className='md:w-3/4 mx-auto text-center ' >
                 <div className="flex text-left justify-between items-center mb-3">
                     <p className='md:text-2xl my-4 font-semibold'>Your Blogs</p>
-                    {loginID==user&&<Link to={`/${loginID}/write`}><button className='text-lg  transition-colors hover:bg-emerald-600 bg-emerald-400 border-2 border-white px-3 py-2 h-max rounded-md '>New Blog</button></Link>}
+                    {loginID==user&&<Link to={`/write`}><button className='text-lg  transition-colors hover:bg-emerald-600 bg-emerald-400 border-2 border-white px-3 py-2 h-max rounded-md '>New Blog</button></Link>}
                 </div>
                 {/*         Search           */}
                 <div className='bg-white p-2 w-3/4 mx-auto mb-6 hover:bg-white/90 transition-colors'>

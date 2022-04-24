@@ -52,7 +52,6 @@ app.get('/:user/avatar',(req,res)=>{
         (err,result)=>{
             if(err)console.log('error')
 
-            console.log(result)
             res.send(result)
         }
     )
@@ -116,6 +115,7 @@ app.post('/:user/write',(req,res)=>{
     const post = req.body.post
 
     const user = req.params.user
+    console.log(user)
 
     db.query(
         "INSERT INTO blog (user,title, post) VALUES (?,?,?)",[user,title,post],
