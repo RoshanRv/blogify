@@ -25,7 +25,7 @@ app.get('/api/get/:user',(req,res)=>{
 
 })
 
-//          Get Search Blogs
+//          Get Search Blogs For User
 app.get('/api/get/:user/:search',(req,res)=>{
 
     const user = req.params.user
@@ -42,10 +42,26 @@ app.get('/api/get/:user/:search',(req,res)=>{
 
 })
 
+//          Get Search Blogs For All Users In Header
+app.get('/get/:search',(req,res)=>{
+
+    const search = req.params.search
+
+    db.query(
+        `SELECT title,user,id FROM blog WHERE title LIKE ? `,search+'%',
+        (err,result)=>{
+            if(err)console.log(err)
+
+            res.send(result)
+            // console.log(result)
+        }
+    )
+
+})
+
 //          Get Users Avatar
 app.get('/:user/avatar',(req,res)=>{
     const user = req.params.user
-    console.log(user)
 
     db.query(
         "SELECT avatar FROM users WHERE USERNAME=?",user,
@@ -70,6 +86,21 @@ app.get('/api/posts/:id',(req,res)=>{
         }
     )
 
+})
+
+app.post('/update/:id',(req,res)=>{
+    const id = req.params.id
+    const title = req.body.title
+    const post = req.body.post
+
+    db.query(
+        "UPDATE blog SET title=? , post=? WHERE id=?",[title,post,id],
+        (err,result)=>{
+            if(err)console.log(err)
+
+            console.log(result);
+        }
+    )
 })
 
 //          UPDATE  PROFILE DP
