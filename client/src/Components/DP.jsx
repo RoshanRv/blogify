@@ -49,7 +49,7 @@ const DP = ({user,loginID,header}) => {
 
   return (
     <>
-        <div className={` ${header?'w-20 h-20 ':'md:w-32 w-24 h-24 md:h-32'} rounded-full border-4 border-black cursor-pointer group relative overflow-hidden`} onClick={()=>setShowChangeDP(true)}>                   
+        <div className={` ${header?'w-20 h-20 ':'md:w-32 w-24 h-24 md:h-32'} rounded-full border-4 border-black cursor-pointer group relative overflow-hidden mx-auto`} onClick={()=>setShowChangeDP(true)}>                   
             {loginID==user&&<div className={`absolute right-1/2 w-full h-full text-center translate-x-1/2 translate-y-1/2 -bottom-16 bg-black/80 text-white ${header?'group-hover:bottom-0':'group-hover:-bottom-4'} transition-all`}>
                 <p>Change</p>
             </div>}
@@ -57,7 +57,7 @@ const DP = ({user,loginID,header}) => {
         </div>
 
         {/*         Change DP  */}
-        {loginID==user&&<div className={`z-50 ${showChangeDP?'scale-100':'scale-0'} top-1 md:left-1/4 left-10 md:w-max max-w-screen absolute m-2 -right-0 bg-emerald-300 transition-all p-1  md:p-3 border-2 border-white text-center `}>
+        {loginID==user&&<div className={`z-50 ${showChangeDP?'scale-100':'scale-0'} top-1 md:left-1/4 ${header?'-left-10':'-left-1'} mx-1 md:w-max max-w-screen absolute m-2 -right-0 bg-emerald-300 transition-all p-1 w-full md:p-3 border-2 border-white text-center `}>
             <p className='font-medium my-1 text-lg '>Change Your DP</p>
             <div className="flex gap-4 flex-wrap justify-center">
             {avatars.map((avatar,i)=>(
