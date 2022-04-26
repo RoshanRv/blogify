@@ -2,12 +2,14 @@ import React,{useEffect, useState}from 'react'
 import Axios from 'axios'
 import Header from './Header'
 import { useNavigate } from 'react-router-dom'
+import Message from './Message'
 
 const Write = () => {
 
     const [title,setTitle]= useState('')
     const [post,setPost]= useState('')
     const [isEmpty,setIsEmpty]=useState(false)
+    const [showMessage,setShowMessage]=useState(false)
 
     const navigate = useNavigate()
 
@@ -22,7 +24,11 @@ const Write = () => {
         }else{
             if(loginID){
                 Axios.post(`http://localhost:3001/${loginID}/write`,{title:title,post:post}).then(
-                    sessionStorage?.removeItem('blog')
+                    sessionStorage?.removeItem('blog'),
+                    setShowMessage(true),
+                    setTimeout(()=>{
+                        setShowMessage(false)
+                    },2000)
                 )
             }else{
                 sessionStorage.setItem('blog',JSON.stringify({title,post}))
@@ -41,9 +47,10 @@ const Write = () => {
     },[])
 
   return (
-    <div>
+    <div className='w-full relative '>
+        <Message  show={showMessage} color={'black'} msg={'Blog Saved'}/>
         <Header />
-    <section className='bg-emerald-500 md:p-8 p-4 min-h-screen '>
+    <section className='bg-emerald-500 md:p-8 p-4 min-h-[90vh] '>
         <div className=' mx-auto flex flex-col justify-center items-center w-3/4  p-1 md:p-2'>
         {isEmpty&&<h1 className='text-red-600 text-lg my-2'>Fill All The Boxes</h1>}
             <div className="p-1 bg-white w-full">
