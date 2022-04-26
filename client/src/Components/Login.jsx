@@ -82,7 +82,7 @@ const Login = () => {
             </div>
             
             
-            <button className='px-3 py-1 mt-6 border-2 rounded-md bg-emerald-400 border-black text-white font-semibold text-lg' onClick={()=>handleLogin()}>Log In</button>
+            <button className='px-3 py-1 mt-6 border-2 rounded-md bg-emerald-400 border-black text-white font-medium text-lg' onClick={()=>handleLogin()}>Log In</button>
 
             <Link to={'/register'}><p className='text-gray-500 mt-6 -mb-2 w-max mx-auto text-sm hover:underline hover:text-gray-800 transition-all '>Don't Have An Account?</p></Link>
         </div>

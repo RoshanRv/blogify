@@ -11,6 +11,8 @@ const Post = () => {
     const [isEditing,setIsEditing]=useState(false)
     const [showMsg,setShowMsg]=useState(false)
     const [confirm,setConfirm]=useState(false)
+    const [isEmpty,setIsEmpty]=useState(false)
+
 
     const navigate = useNavigate()
 
@@ -21,17 +23,25 @@ const Post = () => {
     },[id])
 
     const handleEditSave = ()=>{
-        if(isEditing){
-            setIsEditing(false)
-            Axios.post(`http://localhost:3001/update/${id}`,{title:data.title,post:data.post}).then(
-                setShowMsg(true),
-                    setTimeout(()=>{
-                        setShowMsg(false)
-                    },2000)
-            )
+        if(data.title===''|data.post===''){
+            setIsEmpty(true)
+            setTimeout(()=>{
+                setIsEmpty(false)
+            },2500)
         }else{
-            setIsEditing(true)
+            if(isEditing){
+                setIsEditing(false)
+                Axios.post(`http://localhost:3001/update/${id}`,{title:data.title,post:data.post}).then(
+                    setShowMsg(true),
+                        setTimeout(()=>{
+                            setShowMsg(false)
+                        },2000)
+                )
+            }else{
+                setIsEditing(true)
+            }
         }
+        
     }
 
     const handleDelete = ()=>{
@@ -59,7 +69,7 @@ const Post = () => {
                     {/*             Save / Edit    */}
                         <button className={` text-lg  my-4 transition-colors hover:bg-emerald-600 bg-emerald-400 border-2 border-white px-3 py-2 h-max rounded-md`} onClick={()=>handleEditSave()}>{isEditing?'Save': 'Edit'}</button>
                     </div>}
-                    
+                    {isEmpty&&<h1 className='text-red-600 text-lg w-max mx-auto my-2'>Fill All The Boxes</h1>}
                 <div  className=' mt-4 bg-white p-1'>
                     <div className="p-1 border-4 border-black w-full flex flex-col text-center justify-center items-center">
                         {/*         TITLE        */}
