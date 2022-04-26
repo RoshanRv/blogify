@@ -40,7 +40,6 @@ const Write = () => {
     useEffect(()=>{
         const blog = JSON.parse(sessionStorage.getItem('blog'))
         if(blog){
-            console.log(blog)
             setTitle(blog.title)
             setPost(blog.post)
         }

@@ -1,13 +1,18 @@
 import React,{useState,useEffect} from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams ,useNavigate} from 'react-router-dom'
 import  Axios  from 'axios'
 import Header from './Header'
+import Message from './Message'
 
 const Post = () => {
     const {id}   = useParams()
     const [data,setData]=useState({})
     const loginID = JSON.parse(localStorage.getItem('username'))
     const [isEditing,setIsEditing]=useState(false)
+    const [showMsg,setShowMsg]=useState(false)
+    const [confirm,setConfirm]=useState(false)
+
+    const navigate = useNavigate()
 
     useEffect(()=>{
         Axios.get(`http://localhost:3001/api/posts/${id}`).then((resp)=>{
@@ -18,20 +23,43 @@ const Post = () => {
     const handleEditSave = ()=>{
         if(isEditing){
             setIsEditing(false)
-            Axios.post(`http://localhost:3001/update/${id}`,{title:data.title,post:data.post})
+            Axios.post(`http://localhost:3001/update/${id}`,{title:data.title,post:data.post}).then(
+                setShowMsg(true),
+                    setTimeout(()=>{
+                        setShowMsg(false)
+                    },2000)
+            )
         }else{
             setIsEditing(true)
         }
     }
 
+    const handleDelete = ()=>{
+        Axios.get(`http://localhost:3001/posts/delete/${id}`).then(
+            setTimeout(()=>{
+                navigate(`/${loginID}`)
+            },2000)
+        )
+    }
+
   return (
       <main className='bg-emerald-500 '>
-          <Header />
+          <Message msg={'Blog Updated'} color={'black'} show={showMsg} />
+          <Header  />
           <section className='p-4 min-h-screen'>
             <div className="md:w-3/4 mx-4 md:mx-auto flex flex-col">
                     
-                    {/*         Edit and Save Button */}
-                    {data.user==loginID&&<button className={`self-end text-lg  my-4 transition-colors hover:bg-emerald-600 bg-emerald-400 border-2 border-white px-3 py-2 h-max rounded-md`} onClick={()=>handleEditSave()}>{isEditing?'Save': 'Edit'}</button>}
+                    {/*         Delete , Edit and Save Button */}
+                    {data.user==loginID&&<div className="flex justify-between items-center">
+                        <div className="flex items-center overflow-hidden ">
+                            {/*     DELETE */}
+                            <button className={`self-end text-lg  my-4 transition-colors hover:bg-rose-500 bg-rose-400 border-2 border-white px-3 py-2 h-max rounded-md`} onClick={()=>setConfirm(true)}>Delete</button>
+                            <p className={`mx-2 ${!confirm&&'scale-0'} text-red-600 transition-all `}> Are You Sure? <span className='hover:underline cursor-pointer' onClick={()=>handleDelete()}>Yes </span> or <span  className='hover:underline cursor-pointer' onClick={()=>setConfirm(false)}>No </span></p>
+                        </div>
+                    {/*             Save / Edit    */}
+                        <button className={`self-end text-lg  my-4 transition-colors hover:bg-emerald-600 bg-emerald-400 border-2 border-white px-3 py-2 h-max rounded-md`} onClick={()=>handleEditSave()}>{isEditing?'Save': 'Edit'}</button>
+                    </div>}
+                    
                 <div  className=' mt-4 bg-white p-1'>
                     <div className="p-1 border-4 border-black w-full flex flex-col text-center justify-center items-center">
                         {/*         TITLE        */}

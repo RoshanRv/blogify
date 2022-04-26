@@ -103,6 +103,22 @@ app.post('/update/:id',(req,res)=>{
     )
 })
 
+//          Delete Post 
+
+app.get('/posts/delete/:id',(req,res)=>{
+    const id = req.params.id
+
+    db.query(
+        "DELETE FROM blog WHERE id=?",id,
+
+        (err,result)=>{
+            if(err)console.log(err)
+
+            console.log(result)
+        }
+    )
+})
+
 //          UPDATE  PROFILE DP
 app.post('/:user/profile',(req,res)=>{
     const avatar = req.body.currAvatar
