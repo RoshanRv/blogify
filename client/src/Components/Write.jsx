@@ -28,7 +28,11 @@ const Write = () => {
                     setShowMessage(true),
                     setTimeout(()=>{
                         setShowMessage(false)
-                    },2000)
+                    },2000),
+                    setTimeout(()=>{
+                        navigate(`/${loginID}`)
+                    },3000)
+
                 )
             }else{
                 sessionStorage.setItem('blog',JSON.stringify({title,post}))

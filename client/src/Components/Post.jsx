@@ -38,7 +38,7 @@ const Post = () => {
         Axios.get(`http://localhost:3001/posts/delete/${id}`).then(
             setTimeout(()=>{
                 navigate(`/${loginID}`)
-            },2000)
+            },500)
         )
     }
 
@@ -50,14 +50,14 @@ const Post = () => {
             <div className="md:w-3/4 mx-4 md:mx-auto flex flex-col">
                     
                     {/*         Delete , Edit and Save Button */}
-                    {data.user==loginID&&<div className="flex justify-between items-center">
-                        <div className="flex items-center overflow-hidden ">
+                    {data.user==loginID&&<div className="flex flex-start justify-between md:items-center">
+                        <div className="md:flex items-start md:items-center overflow-hidden ">
                             {/*     DELETE */}
                             <button className={`self-end text-lg  my-4 transition-colors hover:bg-rose-500 bg-rose-400 border-2 border-white px-3 py-2 h-max rounded-md`} onClick={()=>setConfirm(true)}>Delete</button>
                             <p className={`mx-2 ${!confirm&&'scale-0'} text-red-600 transition-all `}> Are You Sure? <span className='hover:underline cursor-pointer' onClick={()=>handleDelete()}>Yes </span> or <span  className='hover:underline cursor-pointer' onClick={()=>setConfirm(false)}>No </span></p>
                         </div>
                     {/*             Save / Edit    */}
-                        <button className={`self-end text-lg  my-4 transition-colors hover:bg-emerald-600 bg-emerald-400 border-2 border-white px-3 py-2 h-max rounded-md`} onClick={()=>handleEditSave()}>{isEditing?'Save': 'Edit'}</button>
+                        <button className={` text-lg  my-4 transition-colors hover:bg-emerald-600 bg-emerald-400 border-2 border-white px-3 py-2 h-max rounded-md`} onClick={()=>handleEditSave()}>{isEditing?'Save': 'Edit'}</button>
                     </div>}
                     
                 <div  className=' mt-4 bg-white p-1'>
