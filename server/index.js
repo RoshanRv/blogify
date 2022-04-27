@@ -189,7 +189,7 @@ app.post('/register',(req,res)=>{
 
             if(result.length == 0){
                 db.query(
-                    "INSERT INTO users (username,password,email,avatar) VALUES (?,?,?,?)",[userName,password,email,'avatar'+(Math.floor(Math.random()*5))+1],
+                    "INSERT INTO users (username,password,email,avatar) VALUES (?,?,?,?)",[userName,password,email,'avatar'+((Math.floor(Math.random()*5))+1)],
                     (err,resu)=>{
                         if(err)console.log(err)
 

@@ -25,15 +25,8 @@ export const Profile = ({user,data,loginID})=>{
                         <DP user={user} loginID={loginID} />
                         <p className='text-black capitalize text-2xl my-4 mx-4 md:mx-8 font-semibold'>{user}</p>
                     </div>
-                    {/*             Likes and Blogs      */}
+                    {/*           Blogs      */}
                     <div className="flex items-end mb-2 gap-x-4">
-                        {/* <div className='flex flex-col text-center justify-center'>
-                            <h1>Likes</h1>
-                            <div className="flex items-center">
-                                <img src={like} alt="like" className='w-12 h-12' />
-                                <p>50</p>
-                            </div>
-                        </div> */}
                         <div className='flex flex-col text-center justify-center'>
                             <h1>Blogs</h1>
                             <div className="flex items-center">
@@ -96,6 +89,9 @@ const Home = () => {
                 </div>
                 
             </div>
+            {postList.length==0&&(<div className="w-3/4 md:w-1/2 md:mx-auto text-center md:my-20 my-10 text-white text-2xl md:text-4xl ">
+                <p>Let People Know What You Are Thinking, So Write A New Blog And Share It In The Public.</p>
+            </div>)}
             {postList?.map((data,i)=>(<Link to={`/posts/${data.id}`} key={i}><div  className='md:w-3/4 mx-4 md:mx-auto flex flex-col text-center justify-center items-center mt-2 bg-white hover:bg-white/90 transition-colors p-2'>
                 <div className="border-2 border-black w-full">
                     <h1 className='px-2 py-1 w-full text-xl md:text-2xl uppercase font-semibold my-2'>{data.title}</h1>
