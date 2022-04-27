@@ -3,6 +3,7 @@ import { useParams ,useNavigate} from 'react-router-dom'
 import  Axios  from 'axios'
 import Header from './Header'
 import Message from './Message'
+import Spinner from './Spinner'
 
 const Post = () => {
     const {id}   = useParams()
@@ -13,12 +14,16 @@ const Post = () => {
     const [confirm,setConfirm]=useState(false)
     const [isEmpty,setIsEmpty]=useState(false)
 
+    const [isLoading,setIsLoading]=useState(true)
+
 
     const navigate = useNavigate()
 
     useEffect(()=>{
+        setIsLoading(true)
         Axios.get(`http://localhost:3001/api/posts/${id}`).then((resp)=>{
             setData({title:resp.data[0].title,post:resp.data[0].post,user:resp.data[0].user})
+            setIsLoading(false)
         })
     },[id])
 
@@ -70,7 +75,7 @@ const Post = () => {
                         <button className={` text-lg  my-4 transition-colors hover:bg-emerald-600 bg-emerald-400 border-2 border-white px-3 py-2 h-max rounded-md`} onClick={()=>handleEditSave()}>{isEditing?'Save': 'Edit'}</button>
                     </div>}
                     {isEmpty&&<h1 className='text-red-600 text-lg w-max mx-auto my-2'>Fill All The Boxes</h1>}
-                <div  className=' mt-4 bg-white p-1'>
+                {!isLoading&&<div  className=' mt-4 bg-white p-1'>
                     <div className="p-1 border-4 border-black w-full flex flex-col text-center justify-center items-center">
                         {/*         TITLE        */}
                         {isEditing?<input  type="text" value={data.title} onChange={(e)=>setData({title:e.target.value,post:data.post,user:data.user})} className='text-center p-2 outline-0 w-full  hover:bg-black/10 transition-colors text-2xl font-semibold uppercase  mb-8' placeholder='Title...'/>:<h1 className=' w-full bg-white rounded-md text-xl font-semibold uppercase md:text-2xl my-1'>{data?.title}</h1>}
@@ -79,8 +84,9 @@ const Post = () => {
                         {/*         Author   */}
                         {!isEditing&&<p className='bg-white font-medium text-lg mt-2 italic capitalize px-2 py-1 w-max rounded-md self-end'>- {data?.user}</p>}
                     </div>
-                </div>
+                </div>}
             </div>
+            {isLoading&&<Spinner />}
         </section>
       </main>
     

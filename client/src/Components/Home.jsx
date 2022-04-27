@@ -1,7 +1,8 @@
 import React,{useState,useEffect}from 'react'
 import Axios from 'axios'
 import { Link, useParams} from 'react-router-dom'
-// import like from '../assets/like.svg'
+import Spinner from './Spinner'
+
 import paper from '../assets/paper.svg'
 import DP from './DP'
 
@@ -52,17 +53,28 @@ const Home = () => {
     const loginID = JSON.parse(localStorage.getItem('username'))
     const [search,setSearch]=useState('')
 
+    const [isLoading,setIsLoading]=useState(true)
+
+
     const getData = (term)=>{
+
+        setIsLoading(true)
+
         if(term){
             Axios.get(`http://localhost:3001/api/get/${user}/${term}`).then((data)=>{
             setPostList(data.data)
+            setIsLoading(false)
+
             })
         }
         else{
             Axios.get(`http://localhost:3001/api/get/${user}`).then((data)=>{
             setPostList(data.data)
+            setIsLoading(false)
+
             })
         }
+        
     }
 
     useEffect(()=>{
@@ -89,8 +101,9 @@ const Home = () => {
                 </div>
                 
             </div>
+            {/*        Welcome Text and No Result      */}
             {postList.length==0&&(<div className="w-3/4 md:w-1/2 mx-auto text-center md:my-20 my-10 text-white text-2xl md:text-4xl ">
-                <p>Let People Know What You Are Thinking, So Write A New Blog And Share It In The Public.</p>
+                <p>{search.length>0?`No Blogs Found Such As '${search}'`:'Let People Know What You Are Thinking, So Write A New Blog And Share It In The Public.'}</p>
             </div>)}
             {postList?.map((data,i)=>(<Link to={`/posts/${data.id}`} key={i}><div  className='md:w-3/4 mx-4 md:mx-auto flex flex-col text-center justify-center items-center mt-2 bg-white hover:bg-white/90 transition-colors p-2'>
                 <div className="border-2 border-black w-full">
@@ -98,7 +111,7 @@ const Home = () => {
                     <p className='px-2 indent-6 py-1 break-all whitespace-pre-wrap w-full text-left capitalize text-lg md:text-xl my-4'>{data.post.length>500? data.post.substring(0,500)+'...':data.post}</p>
                 </div>
             </div></Link>))}
-            
+            {isLoading&&<Spinner />}
         </section>
     </main>
   )
