@@ -89,7 +89,7 @@ const Home = () => {
                 </div>
                 
             </div>
-            {postList.length==0&&(<div className="w-3/4 md:w-1/2 md:mx-auto text-center md:my-20 my-10 text-white text-2xl md:text-4xl ">
+            {postList.length==0&&(<div className="w-3/4 md:w-1/2 mx-auto text-center md:my-20 my-10 text-white text-2xl md:text-4xl ">
                 <p>Let People Know What You Are Thinking, So Write A New Blog And Share It In The Public.</p>
             </div>)}
             {postList?.map((data,i)=>(<Link to={`/posts/${data.id}`} key={i}><div  className='md:w-3/4 mx-4 md:mx-auto flex flex-col text-center justify-center items-center mt-2 bg-white hover:bg-white/90 transition-colors p-2'>

@@ -54,9 +54,9 @@ const Write = () => {
         <Message  show={showMessage} color={'black'} msg={'Blog Saved'}/>
         <Header />
     <section className='bg-emerald-500 md:p-8 p-4 min-h-[90vh] '>
-        <div className=' mx-auto flex flex-col justify-center items-center w-3/4  p-1 md:p-2'>
+        <div className=' mx-auto flex flex-col justify-center items-center md:w-3/4  p-1 md:p-2'>
         {isEmpty&&<h1 className='text-red-600 text-lg my-2'>Fill All The Boxes</h1>}
-            <div className="p-1 bg-white w-full">
+            <div className="p-1 my-6 bg-white w-full">
                 <div className="border-4 border-black  p-1 h-max  ">
 
                 <input  type="text" value={title} onChange={(e)=>setTitle(e.target.value)} className='text-center p-2 outline-0 w-full  hover:bg-black/10 transition-colors text-2xl font-semibold uppercase  mb-8' placeholder='Title...'/>

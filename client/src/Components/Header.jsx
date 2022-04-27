@@ -29,7 +29,7 @@ const Header = () => {
 
 
   return (
-    <header className='bg-emerald-600 md:h-max h-16 relative'>
+    <header className='bg-emerald-600 md:h-max h-16 relative shadow-md shadow-black/30'>
         <nav className='flex md:w-3/4 mx-auto justify-between items-center '>
           {/*       DP      and   USER */}
             <div className="py-1 md:flex items-end hidden ">
@@ -37,9 +37,9 @@ const Header = () => {
                 <p className='mb-2 font-medium capitalize text-lg ml-2'>{loginID}</p>
             </div>
             {/*       LOGO         */}
-            <Link to={loginID?`/${loginID}`:'/'}><div className="p-4 bg-white rounded-full border-2 border-black right-1/2 translate-x-1/2 absolute top-0 group shadow-xl">
+            <Link to={loginID?`/${loginID}`:'/'}><div className="p-4 bg-white  rounded-full border-2 border-black right-1/2 translate-x-1/2 absolute top-0 group shadow-xl shadow-black/40">
               <img src={paper} alt="" className=' md:w-16 md:h-16 w-12 h-12 ' />
-              <h1 className='group-hover:scale-0 shadow-lg transition-all px-1 absolute font-bold text-xl md:text-3xl top-1/2 left-1/2 -translate-x-1/2  bg-white/90 border-2 border-black rounded-lg -translate-y-1/2'>BLOGIFY</h1>
+              <h1 className='group-hover:scale-0 shadow-lg shadow-black/40 transition-all px-1 absolute font-bold text-xl md:text-3xl top-1/2 left-1/2 -translate-x-1/2  bg-white/90 border-2 border-black rounded-lg -translate-y-1/2'>BLOGIFY</h1>
             </div></Link>
             {/*       Menu ICON   */}
             <FontAwesomeIcon icon={faBars} onClick={()=>setShowSideNav(true)} className='absolute right-4 text-lg top-1/2 -translate-y-1/2 md:hidden'/>
@@ -55,7 +55,7 @@ const Header = () => {
 
 
             {/*       SIDE NAV */}
-            <div className={`fixed w-10/12 h-screen bg-emerald-600 transition-all text-center ${showSideNav?'right-0':'-right-full'} top-0 p-1 `}>
+            <div className={`fixed w-10/12 h-screen bg-emerald-600 shadow-2xl shadow-black transition-all text-center ${showSideNav?'right-0':'-right-full'} top-0 p-2 `}>
               {/*     CLOSE BTN    */}
               <FontAwesomeIcon icon={faClose} onClick={()=>setShowSideNav(false)}  className='absolute right-4 text-lg top-4  md:hidden'/>
               <div className="py-1 mt-8  md:hidden items-end w-full mx-auto">
