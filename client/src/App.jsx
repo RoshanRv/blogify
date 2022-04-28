@@ -6,6 +6,7 @@ import Land from "./Components/Land"
 import Login from './Components/Login';
 import Register from './Components/Register';
 import LoginDetails from './Components/LoginDetails';
+import ScrollToTop from './Components/ScrollToTop';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <LoginDetails>
         <div className="App font-disp">
           <Routes>
