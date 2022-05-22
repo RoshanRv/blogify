@@ -23,7 +23,7 @@ const Write = () => {
             },2500)
         }else{
             if(loginID){
-                Axios.post(`http://localhost:3001/${loginID}/write`,{title:title,post:post}).then(
+                Axios.post(`https://blogify--react.herokuapp.com/${loginID}/write`,{title:title,post:post}).then(
                     sessionStorage?.removeItem('blog'),
                     setShowMessage(true),
                     setTimeout(()=>{

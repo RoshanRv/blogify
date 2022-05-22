@@ -21,7 +21,7 @@ const Post = () => {
 
     useEffect(()=>{
         setIsLoading(true)
-        Axios.get(`http://localhost:3001/api/posts/${id}`).then((resp)=>{
+        Axios.get(`https://blogify--react.herokuapp.com/api/posts/${id}`).then((resp)=>{
             setData({title:resp.data[0].title,post:resp.data[0].post,user:resp.data[0].user})
             setIsLoading(false)
         })
