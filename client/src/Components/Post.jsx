@@ -36,7 +36,7 @@ const Post = () => {
         }else{
             if(isEditing){
                 setIsEditing(false)
-                Axios.post(`http://localhost:3001/update/${id}`,{title:data.title,post:data.post}).then(
+                Axios.post(`http://blogify--react.herokuapp.com/update/${id}`,{title:data.title,post:data.post}).then(
                     setShowMsg(true),
                         setTimeout(()=>{
                             setShowMsg(false)
@@ -50,7 +50,7 @@ const Post = () => {
     }
 
     const handleDelete = ()=>{
-        Axios.get(`http://localhost:3001/posts/delete/${id}`).then(
+        Axios.get(`http://blogify--react.herokuapp.com/posts/delete/${id}`).then(
             setTimeout(()=>{
                 navigate(`/${loginID}`)
             },500)
