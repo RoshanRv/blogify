@@ -17,7 +17,7 @@ const DP = ({user,loginID,header}) => {
     const avatars = [avatar1,avatar2,avatar3,avatar4,avatar5]
 
     const getAvatar = ()=>{
-        Axios.get(`http://localhost:3001/${user}/avatar`).then((response)=>{
+        Axios.get(`https://blogify--react.herokuapp.com/${user}/avatar`).then((response)=>{
             const ava = (response.data[0].avatar)
 
             if(ava=="avatar1")return setCurrAvatar(0)
@@ -43,7 +43,7 @@ const DP = ({user,loginID,header}) => {
 
     const handleChangeDP =()=>{
         
-        Axios.post(`http://localhost:3001/${user}/profile`,{currAvatar:returnStr()})
+        Axios.post(`https://blogify--react.herokuapp.com/${user}/profile`,{currAvatar:returnStr()})
         setShowChangeDP(false)
     }
 
