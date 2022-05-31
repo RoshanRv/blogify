@@ -31,9 +31,10 @@ const Login = () => {
                 setIsBlank(false)
             },5000)
         }else{
-            Axios.post('https://blogify--react.herokuapp.com/login',{userName : userName, password :password}).then((response)=>{
+            Axios.post('http://localhost:3001/login',{userName : userName, password :password}).then((response)=>{
                 if(response.data.message)setMessage(response.data.message)
-                if(response.data[0]){
+                // console.log(response.data.accessToken)
+                if(response.data.accessToken){
                     setMessage("Logged In")
                     setLogin(userName)
                     localStorage.setItem('username',JSON.stringify(userName))

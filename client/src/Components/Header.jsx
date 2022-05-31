@@ -19,7 +19,7 @@ const Header = () => {
         setSearch(e)
         if(e.length >0){
           // console.log(e.length)
-          Axios.get(`https://blogify--react.herokuapp.com/get/${e}`).then(resp=>{
+          Axios.get(`http://localhost:3001/get/${e}`).then(resp=>{
             setSearchData(resp.data)
           })
         }else{

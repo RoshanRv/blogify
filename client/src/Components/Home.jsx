@@ -61,14 +61,14 @@ const Home = () => {
         setIsLoading(true)
 
         if(term){
-            Axios.get(`https://blogify--react.herokuapp.com/api/get/${user}/${term}`).then((data)=>{
+            Axios.get(`http://localhost:3001/api/get/${user}/${term}`).then((data)=>{
             setPostList(data.data)
             setIsLoading(false)
 
             })
         }
         else{
-            Axios.get(`https://blogify--react.herokuapp.com/api/get/${user}`).then((data)=>{
+            Axios.get(`http://localhost:3001/api/get/${user}`).then((data)=>{
             setPostList(data.data)
             setIsLoading(false)
 

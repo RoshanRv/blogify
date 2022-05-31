@@ -20,7 +20,7 @@ const Register = () => {
                 setIsBlank(false)
             },5000)
         }else{
-            Axios.post('https://blogify--react.herokuapp.com/register',{userName : userName, password :password, email:email}).then((response)=>{
+            Axios.post('http://localhost:3001/register',{userName : userName, password :password, email:email}).then((response)=>{
                 setMessage(response.data)
 
                 setTimeout(()=>{
