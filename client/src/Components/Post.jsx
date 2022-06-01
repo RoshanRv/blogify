@@ -4,6 +4,7 @@ import  Axios  from 'axios'
 import Header from './Header'
 import Message from './Message'
 import Spinner from './Spinner'
+import Footer from './Footer'
 
 const Post = () => {
     const {id}   = useParams()
@@ -88,6 +89,7 @@ const Post = () => {
             </div>
             {isLoading&&<Spinner />}
         </section>
+        <Footer />
       </main>
     
   )

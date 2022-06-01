@@ -3,6 +3,7 @@ import Axios from 'axios'
 import Header from './Header'
 import { useNavigate } from 'react-router-dom'
 import Message from './Message'
+import Footer from './Footer'
 
 const Write = () => {
 
@@ -69,6 +70,7 @@ const Write = () => {
             <button className='text-lg self-end my-4 transition-colors hover:bg-emerald-600 bg-emerald-400 border-2 border-white px-3 py-2 h-max rounded-md 'onClick={()=>handleSubmit()} >Submit</button>
         </div>
     </section>
+    <Footer/>
     </div>
   )
 }

@@ -5,6 +5,7 @@ import Spinner from './Spinner'
 
 import paper from '../assets/paper.svg'
 import DP from './DP'
+import Footer from './Footer'
 
 
 
@@ -87,9 +88,9 @@ const Home = () => {
     }
 
   return (
-    <main>
+    <main className='bg-emerald-500'>
         <Profile user={user} data={postList} loginID={loginID}/>
-        <section className='bg-emerald-500 p-4 min-h-screen'>
+        <section className=' p-4 min-h-screen'>
             <div className='md:w-3/4 mx-auto text-center ' >
                 <div className="flex text-left justify-between items-center mb-3">
                     <p className='md:text-2xl my-4 font-semibold'>Your Blogs</p>
@@ -113,6 +114,7 @@ const Home = () => {
             </div></Link>))}
             {isLoading&&<Spinner />}
         </section>
+        <Footer/>
     </main>
   )
 }
