@@ -2,7 +2,7 @@
 
 A Web App To Write, Read, Edit Blogs.
 
-[!Preview_blogify](https://i.ibb.co/nQy7mwx/git-blog.png)
+![Preview_blogify](https://i.ibb.co/nQy7mwx/git-blog.png)
 
 ## General Info
 
